@@ -1,0 +1,1 @@
+workHour=$(calculateWorkingHour $((RANDOM%3)));
