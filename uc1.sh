@@ -2,8 +2,11 @@
 sal_hour=20;
 wrk_hour=0;
 month_sal=0;
+ttl_wrkhour=0;
 
-for ((day=1; day<=20; day++))
+day=1;
+
+while [[ $day -le 20 && $ttl_wrkhour -lt 100 ]] 
 do
 
 	attendence=$((RANDOM%3));
@@ -26,14 +29,21 @@ do
 			;;
 	
 	esac
+	ttl_wrkhour=$(($ttl_wrkhour + $wrk_hour))
+	echo " $ttl_wrkhour "
+	
+	echo "----------------"
 
 	ttl_salary=$(($sal_hour * $wrk_hour));
 	
 	echo  " total salary of employee $ttl_salary ";
+	echo "----------------"
 	
 	month_sal=$(($month_sal + $ttl_salary));
+	
+	((day++));
 
 done
-
+echo "----------------"
 
 echo  " total salary of employee in month $month_sal ";
