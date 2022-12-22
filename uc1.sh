@@ -3,8 +3,11 @@ wrk_hour=0;
 month_sal=0;
 ttl_wrkhour=0;
 
+sal_uptodate=1;
+
 daily_sal=()
 
+total_wage=()
 
 day=1;
 count=0;
@@ -33,31 +36,42 @@ do
 	
 	esac
 	ttl_wrkhour=$(($ttl_wrkhour + $wrk_hour))
+	sal_uptodate=$(($ttl_wrkhour))
+	
+
 	echo " $ttl_wrkhour "
+	
+	total_wage[((count))]=$sal_uptodate
 	
 	echo "----------------"
 
 	ttl_salary=$(($sal_hour * $wrk_hour));
 
 
-	daily_sal[((count++))]=$ttl_salary
+	daily_sal[((count))]=$ttl_salary
 	
 	
 	echo  " total salary of employee $ttl_salary ";
 	echo "----------------"
 	
 	month_sal=$(($month_sal + $ttl_salary));
+
 	
+
+	((count++));
 	((day++));
 
 done
 echo "----------------"
+echo "--uptodate-" ${total_wage[@]};
 
-echo  " total salary of employee in month $month_sal ";
+
 echo "--------------------------------------------------"
 
-for (( i=1; i<=${#daily_sal[@]}; i++ ))
+for (( i=0; i<=${#daily_sal[@]}; i++ ))
 do
 	echo "the sal of day $i is " ${daily_sal[$i]};
+	
 done
 
+echo  " total salary of employee in month $month_sal ";
