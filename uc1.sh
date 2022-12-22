@@ -11,6 +11,7 @@ case $attendence in
 		;;
 		2)
 				echo "employee as part time";
+				wrk_hour=4;
 		;;
 
 esac
